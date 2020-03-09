@@ -27,11 +27,12 @@ public class HateoasRestApplication {
 
         User user = new User("aina", "aina", new ArrayList<>());
         WishList wishList = new WishList("Aina's birthday", "Draft", user, new ArrayList<>());
+        WishList wishList2 = new WishList("8th March", "Deleted", user, new ArrayList<>());
         Item item = new Item("iphone", 100000, "https://www.apple.com/ru/iphone-11-pro/", "the best phone ever", wishList);
         Item item2 = new Item("android", 5000, "https://www.android.com", "not the best phone ever", wishList);
 
         wishList.setItems(asList(item, item2));
-        user.setWishLists(Collections.singletonList(wishList));
+        user.setWishLists(asList(wishList, wishList2));
 
         usersRepository.save(user);
         itemsRepository.saveAll(asList(item, item2));
