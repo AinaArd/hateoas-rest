@@ -2,7 +2,6 @@ package ru.itis.hateoasrest.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
@@ -15,28 +14,22 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "\"user\"")
-public class User {
+@Table
+public class Collection {
 
     @Id
     @GeneratedValue
     private Long id;
-    private String login;
-    private String password;
+    private String name;
+    private int number;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL)
     private List<WishList> wishLists;
 
-    public User(String login, String password, List<WishList> wishLists) {
-        this.login = login;
-        this.password = password;
-        this.wishLists = wishLists;
-    }
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public Collection(String name, int number) {
+        this.name = name;
+        this.number = number;
     }
 }

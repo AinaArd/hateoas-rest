@@ -6,6 +6,7 @@ import ru.itis.hateoasrest.models.WishList;
 import ru.itis.hateoasrest.repositories.WishListRepository;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class WishListServiceImpl implements WishListService {
@@ -23,5 +24,10 @@ public class WishListServiceImpl implements WishListService {
         wishList.publish();
         wishListRepository.save(wishList);
         return wishList;
+    }
+
+    @Override
+    public Optional<WishList> findWishListById(Long listId) {
+        return wishListRepository.findById(listId);
     }
 }

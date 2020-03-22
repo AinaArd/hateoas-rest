@@ -35,6 +35,12 @@ public class WishList {
     @OneToMany(mappedBy = "wishList", cascade = CascadeType.ALL)
     private List<Item> items;
 
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name = "collection")
+    private Collection collection;
+
     public WishList(String title, String state, User author, List<Item> items) {
         this.title = title;
         this.state = state;
