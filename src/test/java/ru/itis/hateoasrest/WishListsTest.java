@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -13,6 +14,9 @@ import ru.itis.hateoasrest.models.WishList;
 import ru.itis.hateoasrest.services.WishListService;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -21,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @SpringBootTest
+@AutoConfigureRestDocs(outputDir = "target/snippets")
 public class WishListsTest {
 
     @Autowired
@@ -39,7 +44,8 @@ public class WishListsTest {
         mockMvc.perform(put("/wishLists/1/publish")).andDo(print())
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.title").value(publishedWishList().getTitle()))
-        .andExpect(jsonPath("$.state").value(publishedWishList().getState()));
+        .andExpect(jsonPath("$.state").value(publishedWishList().getState()))
+        .andDo(document("publish_wishList"));
     }
 
     private WishList publishedWishList() {

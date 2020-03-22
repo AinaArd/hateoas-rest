@@ -1,0 +1,25 @@
+= Описание API по курсам
+
+== Методы
+
+|===
+|Метод | Назначение
+|`PUT`
+|Обновить сущность или ее состояние
+|===
+
+=== Публикация wish list'а
+
+Можно опубликовать wish list'ы со статусом *Draft*
+
+.request
+
+include::{snippets}/publish_wishList/http-request.adoc[]
+
+.response
+
+include::{snippets}/publish_wishList/http-response.adoc[]
+
+.response-fields
+
+include::{snippets}/publish_wishList/response-fields.adoc[]
