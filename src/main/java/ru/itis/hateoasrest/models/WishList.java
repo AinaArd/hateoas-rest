@@ -42,6 +42,12 @@ public class WishList {
         this.items = items;
     }
 
+    public WishList(Long id, String title, String state) {
+        this.id = id;
+        this.title = title;
+        this.state = state;
+    }
+
     public void publish() {
         if (this.state.equals("Draft")) {
             this.state = "Published";
