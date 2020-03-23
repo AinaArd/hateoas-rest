@@ -29,8 +29,10 @@ public class WishListsRepresentationProcessor implements RepresentationModelProc
             switch (wishList.getState()) {
                 case "Draft":
                     model.add(linkTo(methodOn(CustomWishListsController.class).publish(wishList.getId())).withRel("publish"));
+                    break;
                 case "Published":
                     model.add(links.linkToItemResource(WishList.class, wishList.getId()).withRel("delete"));
+                    break;
             }
         }
         return model;
