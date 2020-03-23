@@ -2,7 +2,6 @@ package ru.itis.hateoasrest.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
@@ -38,5 +37,11 @@ public class User {
     public User(String login, String password) {
         this.login = login;
         this.password = password;
+    }
+
+    public static User getDefaultUser() {
+        User defaultUser = new User("Null login", "Null password");
+        defaultUser.setWishLists(null);
+        return defaultUser;
     }
 }

@@ -2,6 +2,7 @@ package ru.itis.hateoasrest.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.itis.hateoasrest.dto.ItemDto;
 import ru.itis.hateoasrest.models.Item;
 import ru.itis.hateoasrest.models.WishList;
 import ru.itis.hateoasrest.repositories.ItemsRepository;
@@ -41,4 +42,20 @@ public class ItemsServiceImpl implements ItemsService {
     public Optional<Item> findItemByName(String name) {
         return itemsRepository.findByName(name);
     }
+
+    @Override
+    public void addNewItem(ItemDto itemDto, Long listId) {
+        WishList wishList = getWishList(listId);
+        Item newItem = itemDtoToItem(itemDto, wishList);
+        itemsRepository.save(newItem);
+    }
+
+    private Item itemDtoToItem(ItemDto itemDto, WishList wishList) {
+        return new Item(itemDto.getName(),
+                itemDto.getPrice(),
+                itemDto.getLink(),
+                itemDto.getDescription(),
+                wishList);
+    }
+
 }

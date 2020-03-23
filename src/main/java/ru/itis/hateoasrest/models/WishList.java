@@ -54,6 +54,13 @@ public class WishList {
         this.state = state;
     }
 
+    public static WishList getDefault() {
+        WishList defaultWishList = new WishList(null, "Null wish list", "Draft");
+        defaultWishList.setAuthor(User.getDefaultUser());
+        defaultWishList.setItems(null);
+        return defaultWishList;
+    }
+
     public void publish() {
         if (this.state.equals("Draft")) {
             this.state = "Published";
