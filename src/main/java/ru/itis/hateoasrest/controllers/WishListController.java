@@ -21,22 +21,21 @@ public class WishListController {
     }
 
     @CrossOrigin
-    @RequestMapping(path = "/lists/{listId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getWishList(@PathVariable Long listId, @RequestHeader(name = "Authorization") String token) {
+    @RequestMapping(path = "/wishLists/{listId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getWishList(@PathVariable Long listId) {
         WishList defaultWishList = WishList.getDefault();
         return ResponseEntity.ok(wishListService.findWishListById(listId).orElse(defaultWishList));
     }
 
     @CrossOrigin
-    @RequestMapping(path = "/lists/{listId}", method = RequestMethod.POST)
+    @RequestMapping(path = "/wishLists/{listId}", method = RequestMethod.POST)
     public void addNewItem(@PathVariable Long listId, ItemDto itemDto) {
         itemsService.addNewItem(itemDto, listId);
     }
 
     @CrossOrigin
-    @DeleteMapping("/lists/{listId}")
-    public void deleteItem(@PathVariable Long listId, @RequestParam("title") String itemName,
-                           @RequestHeader(name = "Authorization") String token) {
+    @DeleteMapping("/wishLists/{listId}")
+    public void deleteItem(@PathVariable Long listId, @RequestParam("title") String itemName) {
         itemsService.removeByName(itemName);
     }
 }
