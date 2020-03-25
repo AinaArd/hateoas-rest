@@ -36,12 +36,12 @@ public class WishListsTest {
 
     @BeforeEach
     public void setUp() {
-        when(wishListService.publish(1L)).thenReturn(publishedWishList());
+        when(wishListService.finish(1L)).thenReturn(publishedWishList());
     }
 
     @Test
     public void wishListPublishTest() throws Exception {
-        mockMvc.perform(put("/wishLists/1/publish")).andDo(print())
+        mockMvc.perform(put("/wishLists/1/finish")).andDo(print())
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.title").value(publishedWishList().getTitle()))
         .andExpect(jsonPath("$.state").value(publishedWishList().getState()))

@@ -13,8 +13,8 @@ import java.util.List;
 @RepositoryRestResource
 public interface WishListRepository extends PagingAndSortingRepository<WishList, Long> {
 
-    @RestResource(path = "published", rel = "published")
-    @Query("from WishList wishList where wishList.state = 'Published'")
+    @RestResource(path = "finished", rel = "finished")
+    @Query("from WishList wishList where wishList.state = 'Finished'")
     Page<WishList> findAllPublished(Pageable pageable);
 
     List<WishList> findAllByTitle(String title);

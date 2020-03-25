@@ -61,9 +61,9 @@ public class WishList {
         return defaultWishList;
     }
 
-    public void publish() {
+    public void finish() {
         if (this.state.equals("Draft")) {
-            this.state = "Published";
+            this.state = "Finished";
         } else if (this.state.equals("Deleted")) {
             throw new IllegalStateException();
         }

@@ -19,9 +19,9 @@ public class WishListServiceImpl implements WishListService {
     }
 
     @Override
-    public WishList publish(Long listId) {
+    public WishList finish(Long listId) {
         WishList wishList = wishListRepository.findById(listId).orElseThrow(NoSuchElementException::new);
-        wishList.publish();
+        wishList.finish();
         wishListRepository.save(wishList);
         return wishList;
     }
