@@ -23,7 +23,7 @@ public class HateoasRestApplication {
         GroupsRepository groupsRepository = context.getBean(GroupsRepository.class);
         CollectionsRepository collectionsRepository = context.getBean(CollectionsRepository.class);
 
-        User user = new User("aina", "aina", new ArrayList<>());
+        User user = new User("aina", "aina", new ArrayList<>(), "Active");
 
         WishList wishList = new WishList("Aina's birthday", "Draft", user, new ArrayList<>());
         WishList wishList2 = new WishList("8th March in ACI", "Deleted", user, new ArrayList<>());

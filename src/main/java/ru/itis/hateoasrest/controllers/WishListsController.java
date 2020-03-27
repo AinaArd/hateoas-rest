@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.itis.hateoasrest.services.WishListService;
 
 @RepositoryRestController
-public class CustomWishListsController {
+public class WishListsController {
 
     private WishListService wishListService;
 
     @Autowired
-    public CustomWishListsController(WishListService wishListService) {
+    public WishListsController(WishListService wishListService) {
         this.wishListService = wishListService;
     }
 
